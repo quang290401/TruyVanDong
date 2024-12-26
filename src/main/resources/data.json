@@ -1,0 +1,30 @@
+{
+  "content": [
+    {
+      "id": 11,
+      "claimCode": "C001",
+      "customerName": "Nguyen Van A",
+      "insuranceProductName": "Bảo hiểm nhà",
+      "claimDate": "2024-04-28",
+      "description": "Yêu cầu bồi thường chi phí y tế",
+      "status": "Verified",
+      "statusDescription": "Nhân viên đã xác minh",
+      "amount": 6290.2
+    },
+    {
+      "id": 12,
+      "claimCode": "C002",
+      "customerName": "Nguyen Van B",
+      "insuranceProductName": "Bảo hiểm nhà",
+      "claimDate": "2023-08-12",
+      "description": "Yêu cầu bồi thường tai nạn xe",
+      "status": "Init",
+      "statusDescription": "Khởi tạo",
+      "amount": 8217.87
+    }
+  ],
+  "pageNumber": 0,
+  "pageSize": 20,
+  "totalElements": 5,
+  "totalPages": 1
+}

@@ -1,0 +1,42 @@
+
+Triển khai Spring security
+
+b1) Add thư viện Spring security
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+	+ Sau khi add thư viện security spring boot sẽ tự động tạo ra 1 page login
+	cho hệ thống, có thể sử dụng mặc định page login đấy, hoặc tự tạo ra page khác
+    + hiện tại dang login với account mặc định do spring tự tạo ra
+    -> cần thực hiện các bước tiếp theo để có thể thay đổi cấu hình login với
+    các tài khoản có trong database
+
+b2) Tạo file UserDetailServiceImpl phục vụ query username trong spring security
+    trả về đối tượng user của spring seucrity với các thông tin username, passowrd, roles trong database để spring security thực hiện
+    xác thực với username, passowrd được truyền lên từ FE
+
+b3) Tạo config Spring security(class: SecurityConfig)
+    config role, phân chia quyền cho các url
+b4) Tích hợp với FE
+thêm config
+              .formLogin((form) -> form
+                        .loginPage("/login")
+                        .loginProcessingUrl("/perform_login")
+                        .defaultSuccessUrl("/process-after-login", true) // sau khi login thành công sẽ truy cập vào url process-after-login để điều hướng phân quyền
+                        .failureUrl("/login?error=true")
+                        .permitAll()
+                )
+ tạo controller:
+     @GetMapping(value = "/login")
+     public String LoginController() {
+         return "guest/loginmetlife";
+     }
+
+     // Thực hiện xử lý sau khi login thành công sẽ check quyền và tự động điều hướng với trang
+     // phù hợp ứng với quyền User đã đăng nhập
+     @GetMapping(value = "process-after-login")
+     public String processAfterLoginController() {
+         return loginService.processAfterLogin();
+     }
+ tạo và config from page loginmetlife.html
